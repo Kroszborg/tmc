@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 0, 0, 0;
+  --secondary: 255, 0, 0;
+  --background: 255, 255, 255;
+}
+
+.dark {
+  --primary: 255, 255, 255;
+  --secondary: 255, 0, 0;
+  --background: 18, 18, 18;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-primary transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-secondary text-background hover:bg-opacity-80 px-4 py-2 rounded transition-colors;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(-20px);
+    }
+    100% {
+      transform: translatey(0px);
+    }
+  }
+}
+
+.bg-instruments {
+  background-image: 
+    url('/guitar.svg'),
+    url('/drums.svg'),
+    url('/bass.svg'),
+    url('/keyboard.svg');
+  background-repeat: repeat;
+  background-size: 25% 25%;
+  background-attachment: fixed;
+  opacity: 0.1;
+}
+
+.bg-instruments::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(var(--background), 0.7);
+}
+
+@media (min-width: 768px) {
+  .bg-instruments {
+    background-size: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bg-instruments {
+    background-size: 400px;
+  }
+}
+
